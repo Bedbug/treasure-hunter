@@ -1,0 +1,98 @@
+<!DOCTYPE HTML>
+<html ng-app="InstanceApp">
+<head>
+    
+<!--    http://plnkr.co/edit/6c0ggc?p=preview -->
+	<meta charset="utf-8">
+	<title>Bedbug Instance Game</title>
+    
+    <script src="js/angular.js"></script>
+    <script src="js/angular-animate.js"></script>
+<!--    <script src="js/TimelineLite.min.js"></script>-->
+<!--    <script src="js/TweenLite.min.js"></script>-->
+    <script src="js/EasePack.min.js"></script>
+    <script src="js/TweenMax.min.js"></script>
+    
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Carter+One' rel='stylesheet' type='text/css'>
+    
+<!--    // Angular Controller-->
+    <script src="js/controllers.js"></script>
+    
+	<style>
+		body {
+			padding: 0;
+			margin: 0;
+			background-color: #fff;
+		}
+	</style>
+</head >
+<!--    Angular Controller Bind-->
+<body  ng-controller="GameController" > 
+    
+    
+    <div class="gameContainer" style=" background-image:url('images/base.png')">
+       <div id="choiceWalls" style="position:relative">
+        <div class="prize1" ng-init="prizes[0] = false" ng-show="prizes[0]"></div>
+           <div class="wall1" id="wallLeft" ng-click="selectWall(1)" ng-init="walls[0] = true" ng-show="walls[0]" style=" background-image:url('images/WallLeft.png')"></div>
+           
+            <div class="prize2" ng-init="prizes[1] = false" ng-show="prizes[1]"></div>
+            <div class="wall2" id="wallCenter"  ng-click="selectWall(2)" ng-init="walls[1] = true" ng-show="walls[1]"  ng-click="selectWall"  style=" background-image:url('images/WallCenter.png')"></div>
+           
+            <div class="prize3" ng-init="prizes[2] = false" ng-show="prizes[2]"></div>
+            <div class="wall3" id="wallRight"  ng-click="selectWall(3)" ng-init="walls[2] = true"  ng-show="walls[2]" style=" background-image:url('images/WallRight.png')"></div>
+        </div>
+        
+        <div class="stoneCont" id="stone" style="position:relative">
+            <div class="moneyStone"  style=" background-image:url('images/column.png')"></div>
+            <div class="winCont" style="position: absolute; left: 528px; top: 387px; align-content: center;">
+                <div class="winAmount" id="winMoney" ng-init="winAmount = 0"> €{{winAmount}}</div>
+                </div>
+        </div>
+        
+        <!--<img src="images/base.png" ></img>-->
+        <div class="TopCoverImage" id="topCover">
+            <img src="images/TopLayer.png"></img>
+        </div>
+    
+        <div class="Ui" id="UiObject" style="background-image:url('images/UI.png')">
+          
+                <!--               balance Amount-->
+                 <div class="textClass" id="balance" ng-init="balance = 1000" style="position: absolute; left: 95px; top: 66px;">
+                    €{{balance}}
+                </div>
+           
+           
+                <!--               wins Amount-->
+                 <div class="textClass" id="wins" ng-init="wins = 0" style="position: absolute; left: 246px; top: 66px;">
+                    €{{wins}}
+                </div>
+            
+            <div id="bet">
+<!--                Minus Button-->
+                <div class="plusminus" id="minusBtn" ng-click="minusClick()"  style="left: 326px; top: 12px;">
+                    <p align="center" style=" position: relative; font-size: 266%;">-</p>
+                </div>
+<!--                Bet Amount-->
+                 <div class="block-of-text" id="bet" ng-init="betAmount = 0.5" style="position: absolute; left: 368px; top: 48px; align-content: center;">
+<!--                    <div style="position:absolute; left:50%;">€{{betAmount}}</div>-->
+                      <p >€{{betAmount}}</p>
+                </div>
+<!--                plus Button-->
+                <div class="plusminus" id="plusBtn" ng-click="plusClick()"  style="left: 408px; top: 12px;">
+                    <p align="center" style=" position: relative; font-size: 266%;">+</p>
+                </div>
+                
+            </div>
+            <div class="mainBtn" id="playBtn" ng-click="mainClick()" ng-init="mainBtnText1='New'; mainBtnText2='Card'" ng-mousedown="clickCt()"  ng-mouseup="clickOutCt()">
+                <p align="center" style=" position: relative; top: 15%;">
+                    {{mainBtnText1}}<br>{{mainBtnText2}}</p>
+               
+            </div>
+    
+    
+    
+    </div>
+    
+</body>
+</html>
