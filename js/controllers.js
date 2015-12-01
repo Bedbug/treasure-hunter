@@ -194,17 +194,20 @@ InstanceApp.controller('GameController', ['$scope', function($scope) {
        
     }
     
-    var infoCount = 0;
+    var infoCount = 1;
     
     
     $scope.openInfo = function() {
         if(infoCount == 0){
+            
             infoboxTimeline.play();
             infoCount = 1;
+            
         } else {
             
             infoboxTimeline.reverse();
             infoCount = 0;
+           
         }
     }
     
@@ -255,10 +258,19 @@ InstanceApp.controller('GameController', ['$scope', function($scope) {
         ncDown.stop();
 
 //    INFO BOX
-     var infoboxTimeline = new TimelineLite();
+   
+    closeInfo = function() {
+            console.log("InfoActive: "+ $scope.infoActive);
+             $scope.infoActive = false;
+            console.log("InfoActive After: "+ $scope.infoActive);
+        }
     
-        infoboxTimeline.add(TweenLite.to(uiinfo, 0.5, { y :100, opacity: 1, ease: Power2.easeOut}));
-        infoboxTimeline.stop();
+     var infoboxTimeline = new TimelineLite();
+       
+        infoboxTimeline.add(TweenLite.to(uiinfo, 0.5, { y :200, opacity: 1, ease: Power2.easeOut}));
+        infoboxTimeline.stop
+        
+       
        
 }]);
 
