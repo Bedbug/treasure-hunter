@@ -61,6 +61,17 @@
     left: 215px;
 }
 
+.UiInfo {
+    background-image:url('../images/infobox.png');
+    top: 50px;
+    position: absolute;
+    width: 630px;
+    height: 220px;
+    left: 337px;
+    
+    opacity:0;
+}
+
 .mainBtn {
     background-image:url('../images/button.png'); width: 114px;
     height: 71px;
@@ -68,6 +79,16 @@
     position: relative;
     top: 38px;
     left: 457px;
+}
+
+.infoBtn {
+    background-image: url('../images/infobtn.png');
+    width: 70px;
+    height: 70px;
+    align-content: center;
+    position: absolute;
+    top: 10px;
+    left: 136px;
 }
 
 

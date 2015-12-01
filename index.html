@@ -55,6 +55,10 @@
             <img src="images/TopLayer.png"></img>
         </div>
     
+        <div class="infoBtn" id="infobtn" ng-click="openInfo()"  ng-mousedown="clickCi()"  ng-mouseup="clickOutCi()">
+               
+            </div>
+    
         <div class="Ui" id="UiObject" style="background-image:url('images/UI.png')">
           
                 <!--               balance Amount-->
@@ -89,10 +93,13 @@
                     {{mainBtnText1}}<br>{{mainBtnText2}}</p>
                
             </div>
+            
+            
     
     
     
     </div>
+    <div class="UiInfo" id="uiinfo" ></div>
     
 </body>
 </html>

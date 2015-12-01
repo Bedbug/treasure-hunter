@@ -194,23 +194,56 @@ InstanceApp.controller('GameController', ['$scope', function($scope) {
        
     }
     
+    var infoCount = 0;
     
     
+    $scope.openInfo = function() {
+        if(infoCount == 0){
+            infoboxTimeline.play();
+            infoCount = 1;
+        } else {
+            
+            infoboxTimeline.reverse();
+            infoCount = 0;
+        }
+    }
+    
+    
+//    TIMELINES
+//    Click Button
     var ct = new TimelineLite();
     
     ct.add(TweenLite.to(playBtn, 0.05, {scaleX:0.9, scaleY:0.9, ease: Power2.easeOut}));
     ct.stop();
     
-    
     $scope.clickCt = function () {
         
         ct.play();
     }
+    
     $scope.clickOutCt = function () {
         
         ct.reverse();
     }
     
+//    Click Info
+    var ci = new TimelineLite();
+    
+    ci.add(TweenLite.to(infobtn, 0.05, {scaleX:0.9, scaleY:0.9, ease: Power2.easeOut}));
+    ci.stop();
+    
+    
+    $scope.clickCi = function () {
+        
+        ci.play();
+    }
+    
+    $scope.clickOutCi = function () {
+        
+        ci.reverse();
+    }
+    
+//    STONE ANIMATION
     var nc = new TimelineLite();
     
         nc.add(TweenLite.to(stone, 1.5, { y :-100, ease: Power2.easeOut}));
@@ -220,6 +253,12 @@ InstanceApp.controller('GameController', ['$scope', function($scope) {
     
         ncDown.add(TweenLite.to(stone, 1.5, { y :0, ease: Power2.easeOut}));
         ncDown.stop();
+
+//    INFO BOX
+     var infoboxTimeline = new TimelineLite();
+    
+        infoboxTimeline.add(TweenLite.to(uiinfo, 0.5, { y :100, opacity: 1, ease: Power2.easeOut}));
+        infoboxTimeline.stop();
        
 }]);
 
