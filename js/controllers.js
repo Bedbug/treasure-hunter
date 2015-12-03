@@ -65,11 +65,13 @@ InstanceApp.controller('GameController', ['$scope', function($scope) {
                 $scope.wins = totalToWin;
                 $scope.balance += totalToWin;
 
-                //                Play win Animation
+//                Play win Animation
                playWin();
                 
                  console.log("Picked Winner!!!");
             } else {
+//                Play Lost Animation
+                playLost();
                 
                 if($scope.prizes[rndmWall-2] != null)
                      $scope.prizes[rndmWall-2] = true; 
@@ -96,6 +98,7 @@ InstanceApp.controller('GameController', ['$scope', function($scope) {
             ncDown.restart();
             ncDown.play();
             $scope.wonActive = false;
+            $scope.lostActive = false;
             $scope.mainBtnText1 = "New";
             $scope.mainBtnText2 = "Card";
             TweenMax.to(walls[0], 0.3, {y:0, scale:1, opacity:1});
@@ -121,6 +124,8 @@ InstanceApp.controller('GameController', ['$scope', function($scope) {
             betCount++;
             if( betCount> 4) betCount = 4;
             $scope.betAmount = bets[betCount];
+        } else {
+            alert("CAN'T CHANGE BET RIGHT NOW.");
         }
     }
     
@@ -129,15 +134,25 @@ InstanceApp.controller('GameController', ['$scope', function($scope) {
             betCount--;
             if( betCount< 0) betCount = 0;
             $scope.betAmount = bets[betCount];
-         }
+         }  else {
+            alert("CAN'T CHANGE BET RIGHT NOW.w.");
+        }
     }
     
 //    Win Animation
     playWin = function() {
         var tl = new TimelineLite()
-        tl.from(won, 0.3, {opacity:0, top: -250, scale: 0.3,  ease:Quad.easeOut});
+        tl.from(won, 0.3, {opacity:0, top: -150, scale: 0.3,  ease:Quad.easeOut});
         
         $scope.wonActive = true;
+    }
+    
+    //    Lost Animation
+    playLost = function() {
+        var tl = new TimelineLite()
+        tl.from(lost, 0.3, {opacity:0, top: -150, scale: 0.3,  ease:Quad.easeOut});
+        
+        $scope.lostActive = true;
     }
     
     newCard = function(betAmount) {
@@ -193,6 +208,9 @@ InstanceApp.controller('GameController', ['$scope', function($scope) {
                 
                  console.log("Picked Winner!!!");
             } else {
+//                Play Lost Animation
+                playLost();
+                
                // console.log("Not This Time!!!");
                 if($scope.prizes[choiseNum-2] != null)
                      $scope.prizes[choiseNum-2] = true; 

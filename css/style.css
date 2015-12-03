@@ -52,12 +52,23 @@
 }
 
 .won {
+    z-index: 10;
     position: absolute;
     width: 350px;
     height: 64px;
     top: -100%;
     left: 24%;
     background-image: url('../images/won.png');
+}
+
+.lost {
+     z-index: 10;
+    position: absolute;
+    width: 350px;
+    height: 76px;
+    top: -100%;
+    left: 24%;
+    background-image: url('../images/lost.png');
 }
 
 .Ui {
@@ -149,7 +160,7 @@ p {
     font-size: 41px;
     height: 71px;
     align-content: center;
-    color:gold;
+    color:#FDC53D;
    
 /*    top: 300px;*/
 /*    left: 506px;*/
