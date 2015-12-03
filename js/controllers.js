@@ -135,7 +135,7 @@ InstanceApp.controller('GameController', ['$scope', function($scope) {
 //    Win Animation
     playWin = function() {
         var tl = new TimelineLite()
-        tl.from(won, 0.3, {opacity:0, top: 50, scale: 0.3,  ease:Quad.easeOut});
+        tl.from(won, 0.3, {opacity:0, top: -250, scale: 0.3,  ease:Quad.easeOut});
         
         $scope.wonActive = true;
     }

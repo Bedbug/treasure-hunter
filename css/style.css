@@ -54,9 +54,9 @@
 .won {
     position: absolute;
     width: 350px;
-    height: 75px;
-    top: 60%;
-    left: 48%;
+    height: 64px;
+    top: -100%;
+    left: 24%;
     background-image: url('../images/won.png');
 }
 
