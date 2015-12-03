@@ -6,40 +6,13 @@ InstanceApp.controller('GameController', ['$scope', function($scope) {
     var cardWon;
     $scope.walls = [];
     walls = [wallLeft, wallCenter, wallRight];
-    var wallOpenCount;
+    var wallOpenCount = 0;
     $scope.prizes = [];
     var totalToWin;
     var rndmWall;
     
     
-    $scope.$watchCollection('walls', function() {
-      
-       
-        for(var i=0; i < $scope.walls.length; i++) {
-//           angular.forEach( wall in $scope.walls){
-               
-               if($scope.walls[i] == false)
-                   wallOpenCount++;
-           }
-        
-        if(wallOpenCount == 3){
-//            Goto State 3
-            gameState = 3;
-            $scope.mainBtnText1 = "Reset";
-           $scope.mainBtnText2 = "Game";
-            wallOpenCount = 0;
-            
-        } else {
-//            Reset Count
-            wallOpenCount = 0;
-        }
-   });
-//    if( $scope.wall1Select = false && $scope.wall2Select = false && $scope.wall3Select = false) {
-//        gameState = 2;
-//        $scope.mainBtnText1 = "Reset";
-//        $scope.mainBtnText2 = "Game"; 
-//    }
-    
+
     
     $scope.mainClick = function () {
        // console.log(gameState);
@@ -104,7 +77,7 @@ InstanceApp.controller('GameController', ['$scope', function($scope) {
             TweenMax.to(walls[0], 0.3, {y:0, scale:1, opacity:1});
             TweenMax.to(walls[1], 0.3, {y:0, scale:1,  scale:1, opacity:1});
             TweenMax.to(walls[2], 0.3, {y:0, scale:1, opacity:1});
-            
+            wallOpenCount = 0;
             $scope.prizes[0] = false;
             $scope.prizes[1] = false;
             $scope.prizes[2] = false;
@@ -185,7 +158,7 @@ InstanceApp.controller('GameController', ['$scope', function($scope) {
     }
     
     
-    $scope.selectWall =  function( choiseNum) {
+    $scope.selectWall =  function( choiseNum ) {
         
         console.log("Choise: "+ choiseNum);
         
@@ -193,7 +166,7 @@ InstanceApp.controller('GameController', ['$scope', function($scope) {
             
             //console.log("Picking Winner");
             
-
+            rndmWall = choiseNum;    
             
             // Check if winnerVar is true
             if(cardWon) {
@@ -226,9 +199,9 @@ InstanceApp.controller('GameController', ['$scope', function($scope) {
             //            Animate the wall Close
              TweenMax.to(walls[choiseNum-1], 0.5, {y:50, scale:1, opacity:0});
             //$scope.walls[choiseNum-1] = false;
-            
-        } if(gameState == 2) {
              
+        } else if(gameState == 2) {
+             checkWalls();
              // open the selected wall
              TweenMax.to(walls[choiseNum-1], 0.5, {y:50,scale:1, opacity:0});
              //$scope.walls[choiseNum-1] = false;
@@ -237,6 +210,22 @@ InstanceApp.controller('GameController', ['$scope', function($scope) {
       
        
     }
+    
+       checkWalls = function() {
+      
+         wallOpenCount++;
+          console.log(wallOpenCount);
+           
+        if(wallOpenCount == 2){
+//            Goto State 3
+            gameState = 3;
+            $scope.mainBtnText1 = "Reset";
+           $scope.mainBtnText2 = "Game";
+            wallOpenCount = 0;
+            
+        }
+         console.log("wallOpenCount: "+wallOpenCount);
+   }
     
     var infoCount = 1;
     
