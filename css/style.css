@@ -146,9 +146,10 @@ p {
     position: relative;
     width: 50%;
     left: -50%;
-    font-size: x-large;
+    font-size: 41px;
     height: 71px;
     align-content: center;
+    color:gold;
    
 /*    top: 300px;*/
 /*    left: 506px;*/
