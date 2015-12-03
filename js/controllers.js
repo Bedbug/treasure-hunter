@@ -163,7 +163,7 @@ InstanceApp.controller('GameController', ['$scope', function($scope) {
        
         
         
-        if(winChance < 100)
+        if(winChance < 50)
             return true;
         else
             return false;
@@ -275,7 +275,7 @@ InstanceApp.controller('GameController', ['$scope', function($scope) {
 //    STONE ANIMATION
     var nc = new TimelineLite();
     
-        nc.add(TweenLite.to(stone, 1.5, { y :-100, ease: Power2.easeOut}));
+        nc.add(TweenLite.to(stone, 1.0, { y :-100, ease: Power2.easeOut}));
         nc.stop();
     
     var ncDown = new TimelineLite();
