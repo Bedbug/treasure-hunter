@@ -51,6 +51,15 @@
     top: 121px;
 }
 
+.won {
+    position: absolute;
+    width: 350px;
+    height: 75px;
+    top: 60%;
+    left: 48%;
+    background-image: url('../images/won.png');
+}
+
 .Ui {
     
     background-image: url('images/UI.png');
@@ -113,7 +122,7 @@ p {
 .UiInfo p {
     width: 556px;
     left: 52px;
-    top: 40px;
+    top: 36px;
     position: relative;
     font-size: large;
     text-shadow: 0px 1px 0px #543A00, 3px 3px 3px #402B06;

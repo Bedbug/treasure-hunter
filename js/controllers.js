@@ -5,10 +5,11 @@ InstanceApp.controller('GameController', ['$scope', function($scope) {
     var gameState = 0;
     var cardWon;
     $scope.walls = [];
+    walls = [wallLeft, wallCenter, wallRight];
     var wallOpenCount;
     $scope.prizes = [];
     var totalToWin;
-    
+    var rndmWall;
     
     
     $scope.$watchCollection('walls', function() {
@@ -49,11 +50,12 @@ InstanceApp.controller('GameController', ['$scope', function($scope) {
             $scope.mainBtnText2 = "One";
             gameState = 1;
         }else if(gameState == 1) {
-           var rndmWall =  (Math.ceil(Math.random() * 3));
-//           $scope.$scope.$scope.walls[0] = false;
-//            $scope.$scope.walls[1] = false;
-//            $scope.walls[3] = false;
-            $scope.walls[rndmWall-1] = false;
+           rndmWall =  (Math.ceil(Math.random() * 3));
+            
+//            Animate the wall Close
+            var tl = new TimelineLite();
+            tl.to(walls[rndmWall-1], 0.5, {y:50, opacity:0});
+            tl.play();
             
 //            What to do if card is Won
             if(cardWon) {
@@ -62,10 +64,13 @@ InstanceApp.controller('GameController', ['$scope', function($scope) {
 //                add wins to Wins and balance
                 $scope.wins = totalToWin;
                 $scope.balance += totalToWin;
+
+                //                Play win Animation
+               playWin();
                 
                  console.log("Picked Winner!!!");
             } else {
-                //console.log("Not This Time!!!");
+                
                 if($scope.prizes[rndmWall-2] != null)
                      $scope.prizes[rndmWall-2] = true; 
                 else
@@ -75,21 +80,28 @@ InstanceApp.controller('GameController', ['$scope', function($scope) {
             gameState = 2;
             $scope.mainBtnText1 = "Open";
             $scope.mainBtnText2 = "Rest";
+            
         }else if (gameState == 2) {
-            $scope.walls[0] = false;
-            $scope.walls[1] = false;
-            $scope.walls[2] = false;
+            if(rndmWall-1 != 0)
+                TweenMax.to(walls[0], 0.5, {y:50, opacity:0});
+             if(rndmWall-1 != 1)
+                TweenMax.to(walls[1], 0.5, {y:50, opacity:0});
+             if(rndmWall-1 != 2)
+                TweenMax.to(walls[2], 0.5, {y:50, opacity:0});
+            
             gameState = 3;
             $scope.mainBtnText1 = "Reset";
             $scope.mainBtnText2 = "Game";
         }else if(gameState == 3) {
             ncDown.restart();
             ncDown.play();
+            $scope.wonActive = false;
             $scope.mainBtnText1 = "New";
             $scope.mainBtnText2 = "Card";
-            $scope.walls[0] = true;
-            $scope.walls[1] = true;
-            $scope.walls[2] = true;
+            TweenMax.to(walls[0], 0.3, {y:0, scale:1, opacity:1});
+            TweenMax.to(walls[1], 0.3, {y:0, scale:1,  scale:1, opacity:1});
+            TweenMax.to(walls[2], 0.3, {y:0, scale:1, opacity:1});
+            
             $scope.prizes[0] = false;
             $scope.prizes[1] = false;
             $scope.prizes[2] = false;
@@ -120,6 +132,14 @@ InstanceApp.controller('GameController', ['$scope', function($scope) {
          }
     }
     
+//    Win Animation
+    playWin = function() {
+        var tl = new TimelineLite()
+        tl.from(won, 0.3, {opacity:0, top: 50, scale: 0.3,  ease:Quad.easeOut});
+        
+        $scope.wonActive = true;
+    }
+    
     newCard = function(betAmount) {
         nc.restart();
         nc.play();
@@ -143,7 +163,7 @@ InstanceApp.controller('GameController', ['$scope', function($scope) {
        
         
         
-        if(winChance < 10)
+        if(winChance < 100)
             return true;
         else
             return false;
@@ -168,6 +188,9 @@ InstanceApp.controller('GameController', ['$scope', function($scope) {
                 $scope.wins = totalToWin;
                 $scope.balance += totalToWin;
                 
+//                Play Animation
+                playWin();
+                
                  console.log("Picked Winner!!!");
             } else {
                // console.log("Not This Time!!!");
@@ -182,12 +205,15 @@ InstanceApp.controller('GameController', ['$scope', function($scope) {
             $scope.mainBtnText2 = "Rest";
             
             // open the selected wall
-            $scope.walls[choiseNum-1] = false;
+            //            Animate the wall Close
+             TweenMax.to(walls[choiseNum-1], 0.5, {y:50, scale:1, opacity:0});
+            //$scope.walls[choiseNum-1] = false;
             
         } if(gameState == 2) {
              
              // open the selected wall
-             $scope.walls[choiseNum-1] = false;
+             TweenMax.to(walls[choiseNum-1], 0.5, {y:50,scale:1, opacity:0});
+             //$scope.walls[choiseNum-1] = false;
         }
         
       
