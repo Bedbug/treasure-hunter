@@ -11,6 +11,10 @@
    
 }
 
+body {
+    background-color: lightblue;
+}
+
 .baseImage {
     
     width: 100%;
@@ -83,11 +87,11 @@
 
 .UiInfo {
     background-image:url('../images/infobox.png');
-    top: -50px;
+    top: -325px;
     position: absolute;
     width: 630px;
     height: 220px;
-    left: 337px;
+    left: 210px;
     
     opacity:0;
 }
@@ -102,13 +106,13 @@
 }
 
 .infoBtn {
-    background-image: url('../images/infobtn.png');
+   background-image: url('../images/infobtn.png');
     width: 70px;
     height: 70px;
     align-content: center;
     position: absolute;
-    top: 10px;
-    left: 136px;
+    top: -121px;
+    left: 11px;
 }
 
 

@@ -19,11 +19,16 @@
 <!--    // Angular Controller-->
     <script src="js/controllers.js"></script>
     
+<!--    Preloader-->
+    <link rel="stylesheet" href="css/preloader/normalize.css">
+	<link rel="stylesheet" href="css/preloader/main.css">
+	<script src="js/vendor/modernizr-2.6.2.min.js"></script>
+    
 	<style>
 		body {
 			padding: 0;
 			margin: 0;
-			background-color: #fff;
+			background-color: #222222;
 		}
 	</style>
 </head >
@@ -31,7 +36,25 @@
 <body  ng-controller="GameController" > 
     
     
+    
+    
     <div class="gameContainer" style=" background-image:url('images/base.png')">
+        
+        <div id="loader-wrapper">
+			
+
+			<div class="loader-section section-left"></div>
+            <div class="loader-section section-right">
+        <div id="loader" ></div>
+        </div>
+
+		</div>
+    
+<!--    Preloader Content-->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+	<script src="js/preloader/main.js"></script>
+        
        <div id="choiceWalls" style="position:relative">
         <div class="prize1" ng-init="prizes[0] = false" ng-show="prizes[0]"></div>
            <div class="wall1" id="wallLeft" ng-click="selectWall(1)" ng-init="walls[0] = true" ng-show="walls[0]" style=" background-image:url('images/WallLeft.png')"></div>
@@ -55,10 +78,9 @@
             <img src="images/TopLayer.png"></img>
         </div>
     
-        <div class="infoBtn" id="infobtn" ng-click="openInfo()"  ng-mousedown="clickCi()"  ng-mouseup="clickOutCi()">
-            
-            </div>
-    
+        <div style="position:relative">
+            <div class="infoBtn" id="infobtn" ng-click="openInfo()"  ng-mousedown="clickCi()"  ng-mouseup="clickOutCi()"></div>
+        </div>
         <div class="Ui" id="UiObject" style="background-image:url('images/UI.png')">
           
                 <!--               balance Amount-->
@@ -102,11 +124,13 @@
         <div class="won" id="won" ng-init="wonActive = false" ng-show="wonActive"></div>
         <div class="lost" id="lost" ng-init="lostActive = false" ng-show="lostActive"></div>
     </div>
-    <div class="UiInfo" id="uiinfo"  ng-click="openInfo()">
-        <p>1. Press "New Card" to start a new game<br>
-                <br>2. Press a Wall or press button "Open One" to open a random wall<br>
-                <br>3. Open all walls to see where the tokken is hidden and reset game
-            </p>
+    <div style="position:relative">
+        <div class="UiInfo" id="uiinfo"  ng-click="openInfo()">
+            <p>1. Press "New Card" to start a new game<br>
+                    <br>2. Press a Wall or press button "Open One" to open a random wall<br>
+                    <br>3. Open all walls to see where the tokken is hidden and reset game
+                </p>
+        </div>
     </div>
     
 </body>
